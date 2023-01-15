@@ -1,23 +1,20 @@
 import re
+exlist=["G","P","L","T"]
 
-def SortByGPLT(strlist):
-    a=["G","P","L","T"]
-    output=[]
-    
-    strlist.index("G")
-    
-    L=iter(strlist)
-    while True:
-        try:
-            x = next(L)
-            
-        except StopIteration:
-            # 遇到StopIteration就退出循环
-            break
+def mysort(arr):
+    outputarr=[]
+    return sortByExlist(arr,outputarr)
 
-aaa=input().upper()
-strlist=re.findall('[GPLT]',aaa)
+def sortByExlist(arr,output):
+    if not arr:
+        return output
+    for i in exlist:
+        if i in arr:
+            arr.remove(i)
+            output.append(i)
+    return sortByExlist(arr,output)
 
-print(''.join(strlist))
-
-list(map(SortByGPLT,strlist))
+inputStr=input().upper()
+strlist=re.findall('[GPLT]',inputStr)
+result=mysort(strlist)
+print("".join(result))
